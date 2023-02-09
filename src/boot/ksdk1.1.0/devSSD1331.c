@@ -77,7 +77,7 @@ devSSD1331init(void)
 	PORT_HAL_SetMuxMode(PORTA_BASE, 8u, kPortMuxAlt3);
 	PORT_HAL_SetMuxMode(PORTA_BASE, 9u, kPortMuxAlt3);
 
-	enableSPIpins();
+	warpEnableSPIpins();
 
 	/*
 	 *	Override Warp firmware's use of these pins.
@@ -162,7 +162,95 @@ devSSD1331init(void)
 	 */
 	//...
 
+	/* // Start draw rectangle
+	writeCommand(0x22);
 
+	// Starting coords
+	writeCommand(0x00);
+	writeCommand(0x00);
+
+	// Ending coords
+	writeCommand(0xFF);
+	writeCommand(0xFF);
+
+	// Outline colour
+	writeCommand(0x00);
+	writeCommand(0xFF);
+	writeCommand(0x00);
+
+	// Fill colour
+	writeCommand(0x00);
+	writeCommand(0xFF);
+	writeCommand(0x00); */
+
+	// Display the Danish flag
+	writeCommand(0x22);
+
+	// Starting coords
+	writeCommand(0x00);
+	writeCommand(0x00);
+
+	// Ending coords
+	writeCommand(0xFF);
+	writeCommand(0xFF);
+
+	// Outline colour
+	writeCommand(0xFF);
+	writeCommand(0x00);
+	writeCommand(0x00);
+
+	// Fill colour
+	writeCommand(0xFF);
+	writeCommand(0x00);
+	writeCommand(0x00);
+
+
+
+
+	// Horizontal line
+	writeCommand(0x22);
+
+	// Starting coords
+	writeCommand(0x00);
+	writeCommand(0x59);
+
+	// Ending coords
+	writeCommand(0xFF);
+	writeCommand(0x5F);
+
+	// Outline colour
+	writeCommand(0xFF);
+	writeCommand(0xFF);
+	writeCommand(0xFF);
+
+	// Fill colour
+	writeCommand(0xFF);
+	writeCommand(0xFF);
+	writeCommand(0xFF); 
+
+
+
+
+	//  Vertical line
+	writeCommand(0x22);
+
+	// Starting coords
+	writeCommand(0xFA);
+	writeCommand(0x00);
+
+	// Ending coords
+	writeCommand(0xFE);
+	writeCommand(0xFF);
+
+	// Outline colour
+	writeCommand(0xFF);
+	writeCommand(0xFF);
+	writeCommand(0xFF);
+
+	// Fill colour
+	writeCommand(0xFF);
+	writeCommand(0xFF);
+	writeCommand(0xFF); 
 
 	return 0;
 }

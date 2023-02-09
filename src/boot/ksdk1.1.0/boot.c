@@ -61,6 +61,7 @@
 #include "errstrs.h"
 #include "gpio_pins.h"
 #include "SEGGER_RTT.h"
+#include "devSSD1331.h"
 
 
 #define							kWarpConstantStringI2cFailure		"\rI2C failed, reg 0x%02x, code %d\n"
@@ -2000,6 +2001,9 @@ main(void)
 		 *	want to use menu to progressiveley change the machine state with various
 		 *	commands.
 		 */
+
+		devSSD1331init();
+		
 		printBootSplash(gWarpCurrentSupplyVoltage, menuRegisterAddress, &powerManagerCallbackStructure);
 
 		warpPrint("\rSelect:\n");
