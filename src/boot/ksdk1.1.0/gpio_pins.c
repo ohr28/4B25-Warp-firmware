@@ -144,14 +144,15 @@ gpio_output_pin_user_config_t	outputPins[] = {
 			.config.slewRate = kPortSlowSlewRate,
 			.config.driveStrength = kPortLowDriveStrength,
 		},
-		/*	Not GPIO, so don't configure it as GPIO
+		/*	Not GPIO, so don't configure it as GPIO */
+		
 		{
 			.pinName = kWarpPinCLKOUT32K,
 			.config.outputLogic = 1,
 			.config.slewRate = kPortSlowSlewRate,
 			.config.driveStrength = kPortLowDriveStrength,
 		},
-		*/
+		
 	#else
 		{
 			.pinName = kGlauxPinLED,

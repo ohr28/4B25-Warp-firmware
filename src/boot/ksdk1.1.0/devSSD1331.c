@@ -162,7 +162,7 @@ devSSD1331init(void)
 	 */
 	//...
 
-	/* // Start draw rectangle
+	// Start draw rectangle
 	writeCommand(0x22);
 
 	// Starting coords
@@ -181,9 +181,9 @@ devSSD1331init(void)
 	// Fill colour
 	writeCommand(0x00);
 	writeCommand(0xFF);
-	writeCommand(0x00); */
+	writeCommand(0x00); 
 
-	// Display the Danish flag
+	/* // Display the Danish flag
 	writeCommand(0x22);
 
 	// Starting coords
@@ -250,7 +250,7 @@ devSSD1331init(void)
 	// Fill colour
 	writeCommand(0xFF);
 	writeCommand(0xFF);
-	writeCommand(0xFF); 
+	writeCommand(0xFF); */
 
 	return 0;
 }

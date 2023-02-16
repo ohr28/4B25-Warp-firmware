@@ -1612,7 +1612,7 @@ main(void)
 	#endif
 
 	#if (WARP_BUILD_ENABLE_DEVMMA8451Q)
-		initMMA8451Q(	0x1C	/* i2cAddress */,	kWarpDefaultSupplyVoltageMillivoltsMMA8451Q	);
+		initMMA8451Q(	0x1D	/* i2cAddress */,	kWarpDefaultSupplyVoltageMillivoltsMMA8451Q	);
 	#endif
 
 	#if (WARP_BUILD_ENABLE_DEVLPS25H)
@@ -1994,6 +1994,8 @@ main(void)
 		}
 	#endif
 
+	devSSD1331init();
+
 	while (1)
 	{
 		/*
@@ -2002,7 +2004,7 @@ main(void)
 		 *	commands.
 		 */
 
-		devSSD1331init();
+		
 		
 		printBootSplash(gWarpCurrentSupplyVoltage, menuRegisterAddress, &powerManagerCallbackStructure);
 
