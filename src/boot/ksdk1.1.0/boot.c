@@ -62,12 +62,14 @@
 #include "gpio_pins.h"
 #include "SEGGER_RTT.h"
 #include "devSSD1331.h"
+#include "devINA219.h"
 
 
 #define							kWarpConstantStringI2cFailure		"\rI2C failed, reg 0x%02x, code %d\n"
 #define							kWarpConstantStringErrorInvalidVoltage	"\rInvalid supply voltage [%d] mV!"
 #define							kWarpConstantStringErrorSanity		"\rSanity check failed!"
 
+volatile WarpI2CDeviceState			deviceINA219State;
 
 #if (WARP_BUILD_ENABLE_DEVADXL362)
 	#include "devADXL362.h"
@@ -1995,6 +1997,22 @@ main(void)
 	#endif
 
 	devSSD1331init();
+
+	warpPrint("Start INA219: ---\n");
+	if (!initINA219(0x40)){
+		warpPrint("INA219 initialisation complete!\n");
+		printCurrent_mA_INA219();
+		printPower_mW_INA219();
+
+		// Wait before starting
+		OSA_TimeDelay(1000);
+
+		// Start getting 1000 currents with 0ms delay
+		getXCurrentsCSV(1000, 0);
+		// callXAvgs();
+	} else {
+		warpPrint("INA219 initialisation failed :(\n");
+	}
 
 	while (1)
 	{

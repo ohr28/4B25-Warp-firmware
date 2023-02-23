@@ -135,7 +135,7 @@ devSSD1331init(void)
 	writeCommand(kSSD1331CommandCONTRASTA);		// 0x81
 	writeCommand(0x91);
 	writeCommand(kSSD1331CommandCONTRASTB);		// 0x82
-	writeCommand(0x50);
+	writeCommand(0xFF);
 	writeCommand(kSSD1331CommandCONTRASTC);		// 0x83
 	writeCommand(0x7D);
 	writeCommand(kSSD1331CommandDISPLAYON);		// Turn on oled panel
@@ -161,7 +161,7 @@ devSSD1331init(void)
 	 *	Any post-initialization drawing commands go here.
 	 */
 	//...
-
+	/*
 	// Start draw rectangle
 	writeCommand(0x22);
 
@@ -182,75 +182,15 @@ devSSD1331init(void)
 	writeCommand(0x00);
 	writeCommand(0xFF);
 	writeCommand(0x00); 
+	*/
 
-	/* // Display the Danish flag
-	writeCommand(0x22);
-
-	// Starting coords
+	writeCommand(0x21);
 	writeCommand(0x00);
+	writeCommand(0x10);
+	writeCommand(0xFF);
+	writeCommand(0x10);
 	writeCommand(0x00);
-
-	// Ending coords
-	writeCommand(0xFF);
-	writeCommand(0xFF);
-
-	// Outline colour
 	writeCommand(0xFF);
 	writeCommand(0x00);
-	writeCommand(0x00);
-
-	// Fill colour
-	writeCommand(0xFF);
-	writeCommand(0x00);
-	writeCommand(0x00);
-
-
-
-
-	// Horizontal line
-	writeCommand(0x22);
-
-	// Starting coords
-	writeCommand(0x00);
-	writeCommand(0x59);
-
-	// Ending coords
-	writeCommand(0xFF);
-	writeCommand(0x5F);
-
-	// Outline colour
-	writeCommand(0xFF);
-	writeCommand(0xFF);
-	writeCommand(0xFF);
-
-	// Fill colour
-	writeCommand(0xFF);
-	writeCommand(0xFF);
-	writeCommand(0xFF); 
-
-
-
-
-	//  Vertical line
-	writeCommand(0x22);
-
-	// Starting coords
-	writeCommand(0xFA);
-	writeCommand(0x00);
-
-	// Ending coords
-	writeCommand(0xFE);
-	writeCommand(0xFF);
-
-	// Outline colour
-	writeCommand(0xFF);
-	writeCommand(0xFF);
-	writeCommand(0xFF);
-
-	// Fill colour
-	writeCommand(0xFF);
-	writeCommand(0xFF);
-	writeCommand(0xFF); */
-
 	return 0;
 }
