@@ -1,0 +1,11 @@
+void getXReadings(int x, int delay);
+int16_t maxValue(int16_t* arr, int length);
+int16_t minValue(int16_t* arr, int length);
+int avgValue(int16_t* arr, int length);
+void integrate(int16_t* arr, int16_t* int_arr, int length);
+void zeroOffset(int16_t* arr, int length);
+void measureArr(int16_t* arr, int length, int delay);
+void printArr(int16_t* any_arr, int length);
+bool detectUp(int16_t* int_arr, int length, int bound);
+bool detectDown(int16_t* int_arr, int length, int bound);
+void measureAndRun(int16_t* arr, int16_t* int_arr, int length, int delay, int bound, int* floorLevel);

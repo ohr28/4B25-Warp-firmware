@@ -63,6 +63,7 @@
 #include "SEGGER_RTT.h"
 #include "devSSD1331.h"
 #include "devINA219.h"
+#include "accel_test.h"
 
 
 #define							kWarpConstantStringI2cFailure		"\rI2C failed, reg 0x%02x, code %d\n"
@@ -1996,24 +1997,44 @@ main(void)
 		}
 	#endif
 
-	devSSD1331init();
 
-	warpPrint("Start INA219: ---\n");
-	if (!initINA219(0x40)){
-		warpPrint("INA219 initialisation complete!\n");
-		printCurrent_mA_INA219();
-		printPower_mW_INA219();
+	warpPrint("Starting Floor detection:\n");
+	
+	// Sometimes MMA8451Q forgets 0x2A's ACTIVE bit is set high - this reminds it;
+	setMMA8451QOutputDataRate();
+	
 
-		// Wait before starting
-		OSA_TimeDelay(1000);
+	// DEBUG
+	// Test the accelerometer
+	// getXReadings(5, 1);
+	// Readings should be around 4090 for Z direction when stationary;
+	
+	int floorLevel = 0;
 
-		// Start getting 1000 currents with 0ms delay
-		getXCurrentsCSV(1000, 0);
-		// callXAvgs();
-	} else {
-		warpPrint("INA219 initialisation failed :(\n");
+	const int limit = 50;
+	const int boundary = 200; // 1000;
+	int16_t accelArr[limit];
+	int16_t int_accelArr[limit];
+	
+
+	
+	for (int i=0; i<1; i++) {
+		measureAndRun(accelArr, int_accelArr, limit, 200, boundary, &floorLevel);
+		int maximum = maxValue(accelArr, limit);
+		int end_value = accelArr[limit-1];
+		// probFloors(end_value, 4450, 1676, -1, 3);
+		calcProb(end_value, 4450, 1676, -1, 3);
+		warpPrint("MAX VALUE: -> %d", maximum);
+		OSA_TimeDelay(5000);
 	}
 
+
+
+	
+	
+
+
+	
 	while (1)
 	{
 		/*
@@ -3096,7 +3117,9 @@ main(void)
 				warpPrint("\r\tInvalid selection '%c' !\n", key);
 			}
 		}
+		
 	}
+	
 
 	return 0;
 }
