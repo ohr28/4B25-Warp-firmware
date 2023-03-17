@@ -31,22 +31,13 @@ elif type == "hist2":
     #plt.xticks(range(33500, 41500, 500))
     plt.show()
 
-elif type == "plot0":
-    df0 = pd.read_csv("data3_line.csv", usecols=["Measurement #"])
-    df1 = pd.read_csv("data3_line.csv", usecols=[" Current (mA)"])
-    plt.scatter(df0, df1, color='black')
-    plt.xlabel("Measurement #")
-    plt.ylabel("Current (\u03bcA)")
-    plt.title("Single pixel line current measurements")
-    plt.yticks(range(0, 19000, 2000))
-    plt.show()
-elif type == "plotRes":
-    df0 = pd.read_csv("data3_resistor4.csv", usecols=["Measurement #"])
-    df1 = pd.read_csv("data3_resistor4.csv", usecols=[" Current (mA)"])
-    print(df1)
-    plt.scatter(df0, df1, color='black')
-    plt.xlabel("Measurement #")
-    plt.ylabel("Current (\u03bcA)")
-    plt.title("150\u03A9 resistor current measurements")
-    plt.yticks(range(29700, 30300, 100))
+elif type == "bar":
+    x = ['-1', '0', '1', '2', '3']
+    probs = [1, 1, 1, 31, 46]
+    x_pos = [i for i, _ in enumerate(x)]
+    plt.bar(x, probs, color='black')
+    plt.xlabel("Floor level")
+    plt.ylabel("Likelihood of each floor")
+    plt.title("3 floor model lift movement likelihoods")
+    # plt.yticks(range(0, 19000, 2000))
     plt.show()

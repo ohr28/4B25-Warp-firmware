@@ -358,11 +358,6 @@ void measureAndRun(int16_t* arr, int16_t* int_arr, int length, int delay, int bo
 	}
     warpPrint("FLOOR LEVEL: %d\n", *floorLevel);
     */
-
-    
-    
-    
-
     
 }
 

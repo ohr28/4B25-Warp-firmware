@@ -1998,6 +1998,7 @@ main(void)
 	#endif
 
 
+	// Start of floor detection and error estimation algorithm;
 	warpPrint("Starting Floor detection:\n");
 	
 	// Sometimes MMA8451Q forgets 0x2A's ACTIVE bit is set high - this reminds it;
@@ -2012,27 +2013,24 @@ main(void)
 	int floorLevel = 0;
 
 	const int limit = 50;
+	// DEBUG
+	// Boundary level is for velocity threshold detection;
 	const int boundary = 200; // 1000;
 	int16_t accelArr[limit];
 	int16_t int_accelArr[limit];
-	
 
-	
+	// Run 1 repeat -> each repeat is 10s;
 	for (int i=0; i<1; i++) {
 		measureAndRun(accelArr, int_accelArr, limit, 200, boundary, &floorLevel);
 		int maximum = maxValue(accelArr, limit);
 		int end_value = accelArr[limit-1];
 		// probFloors(end_value, 4450, 1676, -1, 3);
 		calcProb(end_value, 4450, 1676, -1, 3);
-		warpPrint("MAX VALUE: -> %d", maximum);
+		// warpPrint("MAX VALUE: -> %d", maximum);
 		OSA_TimeDelay(5000);
 	}
 
-
-
-	
-	
-
+	// Allow the Warp Terminal to proceed;
 
 	
 	while (1)
